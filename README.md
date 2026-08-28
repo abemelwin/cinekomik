@@ -1,24 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CineKomik
 
-## Getting Started
+CineKomik is a responsive entertainment web app for discovering movies and TV shows, browsing manga, and reading chapters in the browser.
 
-First, run the development server:
+## Features
+
+- Browse movies and TV shows powered by TMDB
+- Browse MangaDex and Comick.io manga
+- Read manga in scroll or page-by-page mode
+## Supabase Setup
+
+1. Create a project at [Supabase](https://supabase.com).
+2. Copy the project URL and anon key from **Project Settings > API** into `.env.local`.
+3. Run [`supabase/schema.sql`](supabase/schema.sql) in the Supabase SQL Editor.
+4. Add `http://localhost:3000/auth/callback` as an allowed redirect URL in Supabase Auth settings.
+
+Without Supabase credentials, public browsing remains available, but authentication and personal lists will not work.
+
+## Scripts
+
+```bash
+npm run dev      # Start the development server
+npm run build    # Create a production build
+npm run start    # Serve the production build
+npm run lint     # Run Next.js lint checks
+```
+
+## Main Routes
+
+- `/` - Home page
+- `/movies` - Movie discovery and search
+- `/tv` - TV show discovery and search
+- `/manga` - Manga discovery
+- `/my-list` - Saved movies and manga for signed-in users
+- `/login` and `/signup` - Authentication
+
+## Deployment
+
+CineKomik can be deployed to [Vercel](https://vercel.com). Add the same environment variables from `.env.local` to the Vercel project settings before deploying.
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Create the local environment file:
+
+```powershell
+Copy-Item .env.example .env.local
+```
+
+Add your API credentials to `.env.local`:
+
+```env
+NEXT_PUBLIC_TMDB_API_KEY=your_tmdb_api_key
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000).
 
 ## Learn More
 
